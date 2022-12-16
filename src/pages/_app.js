@@ -1,12 +1,11 @@
-import '../styles/globals.css'
 import Top from "../componets/Top"
 
 function MyApp({ Component, pageProps }) {
     return (
-        <div className='container'>
-            <Top />
-            <Component {...pageProps} />
-        </div>
+        <>
+        <Top />
+        <Component {...pageProps} />
+        </>
     )
 }
 
