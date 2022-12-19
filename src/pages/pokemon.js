@@ -1,9 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import axios from "axios"
+import SearchBar from '../componets/pokemon/SearchBar';
 
-const pokemon = ({pokemons}) => {
+const pokemon = ({pokemons, types}) => {
+  const [filterPokemon, setFilterPokemon] = useState([]);
+  console.log(filterPokemon);
   return (
-    <div>pokemon</div>
+    <div>
+      {/* <h2>pokemon</h2> */}
+      <SearchBar pokemons={pokemons} setFilterPokemon={setFilterPokemon} />
+    </div>
   )
 }
 
@@ -16,7 +22,8 @@ export async function getStaticProps(){
 
   return{
     props:{
-      pokemons: data
+      pokemons: data,
+      types: data.map(value=>value.type.split(","))
     }
   }
 }
