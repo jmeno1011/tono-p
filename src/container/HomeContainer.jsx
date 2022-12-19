@@ -12,10 +12,10 @@ const HomeContainer = () => {
     <>
       <div>HomeContainer</div>
       <ProjectBlock>
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
+        <ProjectCard title={"Pokemon"} url={"/pokemon"}/>
+        <ProjectCard title={"Lizard"} url={"/"}/>
+        <ProjectCard title={"Lizard"} url={"/"}/>
+        <ProjectCard title={"Lizard"} url={"/"}/>
       </ProjectBlock>
     </>
   )

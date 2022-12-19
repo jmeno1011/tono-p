@@ -31,20 +31,27 @@ const CardBottom = styled.div`
   display: flex;
   align-items: center;
   justify-content: end;
+  a{
+    padding: 4px 8px;
+    font-weight: 500;
+    color: #35BCB2;
+  }
 `
 
-const ProjectCard = () => {
+const ProjectCard = ({ title, url }) => {
   return (
     <ProjectCardBlock>
       <CardImage>
-        <Image alt="test" src="/test.jpg" layout='fill' style={{objectFit:'contain'}} />
+        <Image alt="test" src="/test.jpg" layout='fill' style={{ objectFit: 'contain' }} />
       </CardImage>
       <CardContent>
-        <h2>Lizard</h2>
+        <h2>{title}</h2>
         <p>Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica</p>
       </CardContent>
       <CardBottom>
-        <Link href={"/"}>more</Link>
+        <Link href={url}>
+          <a>more</a>
+        </Link>
       </CardBottom>
     </ProjectCardBlock>
   )
