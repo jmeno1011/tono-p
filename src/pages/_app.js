@@ -1,5 +1,5 @@
 import '../styles/globals.css'
-import Top from "../componets/Top"
+import Top from "../componets/commons/Top"
 
 function MyApp({ Component, pageProps }) {
     return (
