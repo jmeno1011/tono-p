@@ -4,22 +4,13 @@ import React from 'react'
 import styled from 'styled-components'
 
 const ProjectCardBlock = styled.div`
-    max-width: 300px;
+    max-width: 250px;
     background-color: #fff;
     color: rgba(0,0,0,.6);
     border-radius: 4px;
     box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
     overflow: hidden;
     margin: 8px;
-    position: relative;
-    /* img{
-      display: block;
-      width: 100% !important;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-      object-fit: cover;
-    } */
 `
 const CardImage = styled.div`
   height: 140px;
