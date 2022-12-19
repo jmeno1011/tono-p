@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -17,7 +18,11 @@ const HeaderBlcok = styled.header`
 const Top = () => {
   return (
     <HeaderBlcok>
-        <h1>tono-p</h1>
+      <Link href={"/"}>
+        <a>
+          <h1>tono-p</h1>
+        </a>
+      </Link>
     </HeaderBlcok>
   )
 }
