@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from "axios"
 import SearchBar from '../componets/pokemon/SearchBar';
+import PokemonList from '../componets/pokemon/PokemonList';
 
 const pokemon = ({pokemons, types}) => {
   const [filterPokemon, setFilterPokemon] = useState([]);
@@ -9,6 +10,7 @@ const pokemon = ({pokemons, types}) => {
     <div>
       {/* <h2>pokemon</h2> */}
       <SearchBar pokemons={pokemons} setFilterPokemon={setFilterPokemon} />
+      <PokemonList pokemons={pokemons}/>
     </div>
   )
 }

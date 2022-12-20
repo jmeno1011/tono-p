@@ -38,11 +38,11 @@ const CardBottom = styled.div`
   }
 `
 
-const ProjectCard = ({ title, url }) => {
+const ProjectCard = ({ title, imageSrc, url }) => {
   return (
     <ProjectCardBlock>
       <CardImage>
-        <Image alt="test" src="/test.jpg" layout='fill' style={{ objectFit: 'contain' }} />
+        <Image alt="test" src={imageSrc} layout='fill' style={{ objectFit: 'contain' }} />
       </CardImage>
       <CardContent>
         <h2>{title}</h2>
