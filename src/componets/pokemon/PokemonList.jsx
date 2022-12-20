@@ -22,10 +22,10 @@ const Card = styled.div`
 `
 
 const PokemonList = ({pokemons}) => {
-    const selectType = (e) => {
-        const type = e.target.dataset.value;
-        setSearchResult(pockemon.filter((item) => item.type.includes(type)));
-      };
+    // const selectType = (e) => {
+    //     const type = e.target.dataset.value;
+    //     setSearchResult(pokemons.filter((item) => item.type.includes(type)));
+    //   };
   return (
     <PokemonListBlock>
         {pokemons.map((value)=>(
