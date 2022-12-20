@@ -80,7 +80,7 @@ const PokemonList = ({ pokemons, setFilterPokemon }) => {
         <PokemonListBlock>
             {pokemons.map((value) => (
                 <Card key={value.no}>
-                    <Image src={value.url} height={100} width={100} style={{ objectFit: 'cover', width:'100px' }} />
+                    <Image src={value.url} height={100} width={100} />
                     <CardInfo>
                         <h5>No. {attachZero(value.no)}</h5>
                         <h4>{value.name}</h4>
