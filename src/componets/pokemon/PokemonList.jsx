@@ -5,8 +5,13 @@ import styled from 'styled-components'
 const PokemonListBlock = styled.div`
     padding: 16px;
     background-color: darkred;
-    display: flex;
-    flex-wrap: wrap;
+    >div{
+        max-width: 1264px;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        flex-wrap: wrap;
+    }
 `
 const Card = styled.div`
     width: 150px;
@@ -78,22 +83,24 @@ const PokemonList = ({ pokemons, setFilterPokemon }) => {
     };
     return (
         <PokemonListBlock>
-            {pokemons.map((value) => (
-                <Card key={value.no}>
-                    <Image src={value.url} height={100} width={100} />
-                    <CardInfo>
-                        <h5>No. {attachZero(value.no)}</h5>
-                        <h4>{value.name}</h4>
-                    </CardInfo>
-                    <CardBottom>
-                        {value.type.split(",").map(t => (
-                            <TypeSpan key={`${value.name}_${t}`} data-value={t} onClick={selectType}>
-                                {t}
-                            </TypeSpan>
-                        ))}
-                    </CardBottom>
-                </Card>
-            ))}
+            <div>
+                {pokemons.map((value) => (
+                    <Card key={value.no}>
+                        <Image src={value.url} height={100} width={100} />
+                        <CardInfo>
+                            <h5>No. {attachZero(value.no)}</h5>
+                            <h4>{value.name}</h4>
+                        </CardInfo>
+                        <CardBottom>
+                            {value.type.split(",").map(t => (
+                                <TypeSpan key={`${value.name}_${t}`} data-value={t} onClick={selectType}>
+                                    {t}
+                                </TypeSpan>
+                            ))}
+                        </CardBottom>
+                    </Card>
+                ))}
+            </div>
         </PokemonListBlock>
     )
 }
