@@ -34,9 +34,7 @@ const CardInfo = styled.div`
 `
 const CardBottom = styled.div`
     width: 100%;
-    /* padding: 0 16px; */
     display: flex;
-    /* align-items: center; */
     text-align: center;
     
 `
