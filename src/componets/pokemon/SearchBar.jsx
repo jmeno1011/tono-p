@@ -49,13 +49,18 @@ const SearchBar = ({pokemons, setFilterPokemon}) => {
     setFilterPokemon(pokemons)
     setKeyword("")
   }
+  function onKeyPressHandle(e){
+    if(e.key === "Enter"){
+      search()
+    }
+  }
   return (
     <SearchBarBlock>
       <Logo>
         <Image src={"/icon_ball_b.png"} width={33} height={33} />
         <h3>포켓몬 도감</h3>
       </Logo>
-      <Input type={"text"} placeholder="search your pokemon!" value={keyword} onChange={(e) => setKeyword(e.target.value)} />
+      <Input type={"text"} placeholder="search your pokemon!" value={keyword} onChange={(e) => setKeyword(e.target.value)} onKeyPress={onKeyPressHandle}/>
       <Button onClick={search}>
         <Icon icon="ant-design:search-outlined" />
       </Button>

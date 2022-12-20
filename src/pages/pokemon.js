@@ -3,29 +3,27 @@ import axios from "axios"
 import SearchBar from '../componets/pokemon/SearchBar';
 import PokemonList from '../componets/pokemon/PokemonList';
 
-const pokemon = ({pokemons, types}) => {
+const pokemon = ({ pokemons, types }) => {
   const [filterPokemon, setFilterPokemon] = useState([]);
-  console.log(filterPokemon);
   return (
     <div>
-      {/* <h2>pokemon</h2> */}
       <SearchBar pokemons={pokemons} setFilterPokemon={setFilterPokemon} />
-      <PokemonList pokemons={pokemons}/>
+      <PokemonList pokemons={filterPokemon.length === 0 ? pokemons : filterPokemon} setFilterPokemon={setFilterPokemon} />
     </div>
   )
 }
 
 export default pokemon
 
-export async function getStaticProps(){
+export async function getStaticProps() {
   const apiUrl = process.env.POKEMON_API_URL;
   const res = await axios.get(apiUrl);
   const data = res.data;
 
-  return{
-    props:{
+  return {
+    props: {
       pokemons: data,
-      types: data.map(value=>value.type.split(","))
+      types: data.map(value => value.type.split(","))
     }
   }
 }

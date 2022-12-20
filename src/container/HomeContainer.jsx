@@ -10,7 +10,6 @@ const ProjectBlock = styled.div`
 const HomeContainer = () => {
   return (
     <>
-      <div>HomeContainer</div>
       <ProjectBlock>
         <ProjectCard title={"Pokemon"} imageSrc={"/pokemon.webp"} url={"/pokemon"}/>
         <ProjectCard title={"Lizard"} imageSrc={"/test.jpg"} url={"/"}/>
