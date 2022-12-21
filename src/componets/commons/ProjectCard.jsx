@@ -24,6 +24,11 @@ const CardContent = styled.div`
   }
   p{
     font-size: 0.875rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
   }
 `
 const CardBottom = styled.div`
