@@ -23,6 +23,14 @@ const Card = styled.div`
     border-radius: 20px;
     margin-right: 8px;
     margin-bottom: 8px;
+    >span{
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    >span:hover{
+        transform: scale(1.1);
+        box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    }
 `
 const CardInfo = styled.div`
     width: 100%;
@@ -86,15 +94,15 @@ const PokemonList = ({ pokemons, setFilterPokemon }) => {
             <div>
                 {pokemons.map((value) => (
                     <Card key={value.no}>
-                        <Image src={value.url} height={100} width={100} />
+                        <Image src={value.url} height={100} width={100}  />
                         <CardInfo>
                             <h5>No. {attachZero(value.no)}</h5>
                             <h4>{value.name}</h4>
                         </CardInfo>
                         <CardBottom>
-                            {value.type.split(",").map(t => (
-                                <TypeSpan key={`${value.name}_${t}`} data-value={t} onClick={selectType}>
-                                    {t}
+                            {value.type.split(",").map(types => (
+                                <TypeSpan key={`${value.name}_${types}`} data-value={types} onClick={selectType}>
+                                    {types}
                                 </TypeSpan>
                             ))}
                         </CardBottom>
