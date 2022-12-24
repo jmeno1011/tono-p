@@ -11,6 +11,7 @@ const HomeContainer = () => {
   return (
     <>
       <ProjectBlock>
+        {/* TODO ProjectCard 컴포넌트에 props로 description을 넘겨줘서 각각 내용 다르게 하기 */}
         <ProjectCard title={"Pokemon"} imageSrc={"/pokemon.webp"} url={"/pokemon"}/>
         <ProjectCard title={"Lizard"} imageSrc={"/test.jpg"} url={"/"}/>
         <ProjectCard title={"Lizard"} imageSrc={"/test.jpg"} url={"/"}/>
