@@ -36,12 +36,18 @@ a {
 @media(min-width: 1280px){
   .container{
     max-width: 100%;
-    min-height: 100vh;
   }
+}
+
+.container{
+  min-height: 100vh;
 }
 
 .Home-page{
   max-width: 1128px;
   margin: 0 auto;
   padding-top: 16px;
+}
+.layout{
+  padding: 16px;
 }
