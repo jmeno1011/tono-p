@@ -10,6 +10,7 @@ public 폴더에는 정적인 에셋들을 저장해준다.
 - 5차 : npm install dayjs --save 날짜 포멧을 지정하기 위해 추가 - 달력 페이지에서 
 
 ### css 
+- primary-color : #35BCB2;
 - h2 : 1.5rem;
 - h3 : 1.25rem;
 - h4 : 1rem;

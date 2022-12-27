@@ -4,6 +4,9 @@ import CalendarComp from '../componets/calendar/CalendarComp'
 
 const CalendarBlock = styled.div`
     display: flex;
+    @media (max-width: 992px) {
+        flex-direction: column-reverse;
+    }
 `
 
 const Calendar = () => {

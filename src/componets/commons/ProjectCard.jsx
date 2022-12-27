@@ -8,7 +8,6 @@ const ProjectCardBlock = styled.div`
     background-color: #fff;
     color: rgba(0,0,0,.6);
     border-radius: 4px;
-    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
     overflow: hidden;
     margin: 8px;
 `
@@ -45,7 +44,7 @@ const CardBottom = styled.div`
 
 const ProjectCard = ({ title, imageSrc, url }) => {
   return (
-    <ProjectCardBlock>
+    <ProjectCardBlock className='box-sd'>
       <CardImage>
         <Image alt="test" src={imageSrc} layout='fill' style={{ objectFit: 'contain' }} />
       </CardImage>
