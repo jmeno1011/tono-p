@@ -28,17 +28,24 @@ const Button = styled.button`
 `
 
 const CalendarHeader = ({ currnetDay, setCurrnetDay }) => {
+    const prevMonth = () => {
+        setCurrnetDay(new Date(currnetDay.setMonth(currnetDay.getMonth() - 1)));
+    }
+    const todayMonth = () => {
+        setCurrnetDay(new Date());
+    }
+    const nextMonth = () => {
+        setCurrnetDay(new Date(currnetDay.setMonth(currnetDay.getMonth() + 1)));
+    }
     return (
         <CalendarHeaderBlock>
             <div>
                 <span>{dayjs(currnetDay).format("MMMM")}</span>{" "}<span>{dayjs(currnetDay).format('YYYY')}</span>
             </div>
             <HeaderRight>
-                <Button><Icon icon="material-symbols:arrow-back-ios-new" /></Button>
-                {/* <Button><span>&lsaquo;</span></Button> */}
-                <Button><span>Today</span></Button>
-                {/* <Button><span>&rsaquo;</span></Button> */}
-                <Button><Icon icon="material-symbols:arrow-forward-ios" /></Button>
+                <Button onClick={prevMonth}><Icon icon="material-symbols:arrow-back-ios-new" /></Button>
+                <Button onClick={todayMonth}><span>Today</span></Button>
+                <Button onClick={nextMonth}><Icon icon="material-symbols:arrow-forward-ios" /></Button>
             </HeaderRight>
         </CalendarHeaderBlock>
     )
