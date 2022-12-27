@@ -16,3 +16,4 @@ public 폴더에는 정적인 에셋들을 저장해준다.
 - h4 : 1rem;
 - h5 : 0.875rem;
 - p : 0.875rem;
+- border-color : #e3e3e3;

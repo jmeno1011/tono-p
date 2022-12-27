@@ -13,7 +13,7 @@ const CalendarBodyHeader = styled.header`
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     padding-bottom: 8px;
-    border-bottom: 1px solid silver;
+    border-bottom: 1px solid #e3e3e3;
     >div{
         display: flex;
         justify-content: end;
