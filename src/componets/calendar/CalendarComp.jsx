@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import styled from 'styled-components';
+import CalendarBody from './CalendarBody';
 import CalendarHeader from './CalendarHeader';
 
 const CalendarCompBlock = styled.div`
     border-radius: 8px;
+    width: 100%;
 `
 
 const CalendarComp = () => {
@@ -11,7 +13,7 @@ const CalendarComp = () => {
   return (
     <CalendarCompBlock className='box-sd'>
         <CalendarHeader currnetDay={currnetDay} setCurrnetDay={setCurrnetDay}/>
-        <div>body</div>
+        <CalendarBody />
         <div>bottom</div>
     </CalendarCompBlock>
   )
