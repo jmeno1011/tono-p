@@ -6,8 +6,7 @@ import ScheduleForm from './ScheduleForm'
 
 const ScheduleListBlock = styled.div`
     min-width: 300px;
-    margin-right: 16px;
-    /* background-color: #F7F7F7; */
+    background-color: #F7F7F7;
     overflow: hidden;
     border-radius: 8px;
     position: relative;
@@ -29,6 +28,8 @@ const ScheduleAddBlock = styled.div`
 `
 const ScheduleListBox = styled.div`
     padding-top: 8px;
+    background-color: #fff;
+    height: calc(100% - 57px);
 `
 
 const ScheduleList = () => {

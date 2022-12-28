@@ -16,13 +16,44 @@ const CalendarRow = styled.div`
     }
 `
 const Cell = styled.div`
-    display: flex;
-    justify-content: end;
+    
     padding: 8px;
     min-height: 60px;
     border-right: 1px solid #e3e3e3;
     color: ${(props) => (props.color)};
     font-weight: 500;
+    >span{
+        display: flex;
+        justify-content: end;
+        margin-bottom: 4px;
+    }
+`
+const Schedule = styled.div`
+    display: flex;
+    align-items: center;
+    font-size: 0.625rem;
+    position: relative;
+    div>span{
+        position: relative;
+        display: inline-block;
+        padding: 2px 4px;
+        opacity: 1;
+        font-size: 1.1em;
+        text-overflow: ellipsis;
+        z-index: 2;
+    }
+    >span{
+        z-index: 1;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: ${(props) => props.bgColor};
+        border-radius: 6px;
+        opacity: 0.5;
+    }
 `
 
 const CalendarBody = ({ currnetDay }) => {
@@ -96,7 +127,20 @@ const CalendarBody = ({ currnetDay }) => {
                                         key={date}
                                         color={dayjs(date).isBetween(monthStartDate.subtract(1, "day"), monthEndDate) ? "black" : "gray"}
                                     >
-                                        {dayjs(date).format("D") === "1" ? dayjs(date).format("MMM D") : dayjs(date).format("D")}
+                                        <span>
+                                            {dayjs(date).format("D") === "1" ? dayjs(date).format("MMM D") : dayjs(date).format("D")}
+                                        </span>
+                                        {
+                                            myData.filter(el => el.start === dayjs(date).format("YYYY-MM-DD")).map((value, index) => (
+                                                <Schedule key={`${index}_${value.title}`} bgColor={value.color}>
+                                                    <div>
+                                                        <span>{value.title}</span>
+                                                    </div>
+                                                    <span></span>
+                                                </Schedule>
+                                            ))
+                                        }
+
                                     </Cell>
                                 ))
                         }
@@ -106,4 +150,26 @@ const CalendarBody = ({ currnetDay }) => {
     )
 }
 
-export default CalendarBody
+export default CalendarBody;
+const myData = [{
+    title: 'Fixed event',
+    start: '2022-12-18',
+    end: '2022-12-19',
+    color: '#9e9e9e',
+    editable: false
+}, {
+    title: 'Drag me',
+    start: '2022-12-03',
+    end: '2022-12-05',
+    color: '#cc9900'
+}, {
+    title: 'Resize me',
+    start: '2022-12-24',
+    end: '2022-12-29',
+    color: '#ca4747'
+}, {
+    title: 'Move me around',
+    start: '2022-12-11',
+    end: '2022-12-14',
+    color: '#339966'
+}];

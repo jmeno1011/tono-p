@@ -5,6 +5,7 @@ import ScheduleList from '../componets/calendar/ScheduleList'
 
 const CalendarBlock = styled.div`
     display: flex;
+    gap: 16px;
     @media (max-width: 992px) {
         flex-direction: column-reverse;
     }

@@ -83,6 +83,7 @@ const ScheduleForm = ({ open, setOpen }) => {
     const [description, setDescription] = useState("New event description1\nNew event description2");
     const [startDate, setStartDate] = useState(new Date());
     const [color, setColor] = useState("#ca4747");
+    const colors = ["#ca4747", "#cc9900", "#339966", "#9e9e9e"];
 
     const saveSchedule = (e) => {
         e.preventDefault();
@@ -110,7 +111,7 @@ const ScheduleForm = ({ open, setOpen }) => {
             </Row>
             <Row>
                 <h5>Description</h5>
-                <textarea rows={2} placeholder="..." value={description} onChange={e=>setDescription(e.target.value)} />
+                <textarea rows={2} placeholder="..." value={description} onChange={e => setDescription(e.target.value)} />
             </Row>
             <Row>
                 <h5>Date</h5>
@@ -118,42 +119,19 @@ const ScheduleForm = ({ open, setOpen }) => {
             </Row>
             <Row>
                 <h5>Color</h5>
-                <RadioColor color="#ca4747">
-                    <input
-                        type="radio"
-                        name="color"
-                        value="#ca4747"
-                        checked={color !== undefined ? color === "#ca4747" : undefined}
-                        onChange={e => setColor(e.target.value)} />
-                    <span></span>
-                </RadioColor>
-                <RadioColor color="#cc9900">
-                    <input
-                        type="radio"
-                        name="color"
-                        value="#cc9900"
-                        checked={color !== undefined ? color === "#cc9900" : undefined}
-                        onChange={e => setColor(e.target.value)} />
-                    <span></span>
-                </RadioColor>
-                <RadioColor color="#339966">
-                    <input
-                        type="radio"
-                        name="color"
-                        value="#339966"
-                        checked={color !== undefined ? color === "#339966" : undefined}
-                        onChange={e => setColor(e.target.value)} />
-                    <span></span>
-                </RadioColor>
-                <RadioColor color="#9e9e9e">
-                    <input
-                        type="radio"
-                        name="color"
-                        value="#9e9e9e"
-                        checked={color !== undefined ? color === "#9e9e9e" : undefined}
-                        onChange={e => setColor(e.target.value)} />
-                    <span></span>
-                </RadioColor>
+                {
+                    colors.map((clr) => (
+                        <RadioColor key={clr} color={clr}>
+                            <input
+                                type="radio"
+                                name="color"
+                                value={clr}
+                                checked={color !== undefined ? color === clr : undefined}
+                                onChange={e => setColor(e.target.value)} />
+                            <span></span>
+                        </RadioColor>
+                    ))
+                }
             </Row>
         </ScheduleFormBlock>
     )
