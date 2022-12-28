@@ -15,10 +15,17 @@ const Logo = styled.div`
   align-items: center;
   color: #fff;
   margin-right: 16px;
+
   h3{
+    display: inline-block;
     font-size: 1.25rem;
     font-weight: 500;
     margin-left: 8px;
+  }
+  @media(max-width: 468px) {
+    h3{
+      display: none;
+    }
   }
 `
 const Input = styled.input`

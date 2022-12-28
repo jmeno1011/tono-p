@@ -11,6 +11,7 @@ const PokemonListBlock = styled.div`
         margin-right: auto;
         display: flex;
         flex-wrap: wrap;
+        justify-content: center;
     }
 `
 const Card = styled.div`

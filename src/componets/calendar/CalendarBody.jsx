@@ -5,16 +5,12 @@ import styled from 'styled-components'
 dayjs.extend(isBetween)
 
 const CalendarBodyBlock = styled.div`
-    /* padding: 8px 16px; */
     background-color: #fff;
 `
-
-
 const CalendarRow = styled.div`
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     border-bottom: 1px solid #e3e3e3;
-    
     >div:last-child{
         border: none;
     }
@@ -23,7 +19,7 @@ const Cell = styled.div`
     display: flex;
     justify-content: end;
     padding: 8px;
-    height: 60px;
+    min-height: 60px;
     border-right: 1px solid #e3e3e3;
     color: ${(props) => (props.color)};
     font-weight: 500;
