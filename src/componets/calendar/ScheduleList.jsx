@@ -1,7 +1,8 @@
 import { Icon } from '@iconify/react'
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import ScheduleCard from './ScheduleCard'
+import ScheduleForm from './ScheduleForm'
 
 const ScheduleListBlock = styled.div`
     min-width: 300px;
@@ -9,6 +10,7 @@ const ScheduleListBlock = styled.div`
     /* background-color: #F7F7F7; */
     overflow: hidden;
     border-radius: 8px;
+    position: relative;
 `
 
 const ScheduleAddBlock = styled.div`
@@ -30,14 +32,19 @@ const ScheduleListBox = styled.div`
 `
 
 const ScheduleList = () => {
+    const [open, setOpen] = useState(false);
     const addEvent = () => {
         console.log("이벤트 추가");
+        setOpen(!open)
     }
     return (
         <ScheduleListBlock className='box-sd'>
             <ScheduleAddBlock onClick={addEvent}>
-                <Icon icon="material-symbols:add" /><span>새 이벤트</span>
+                <Icon icon="material-symbols:add" /><span>New event</span>
             </ScheduleAddBlock>
+            {
+                open?<ScheduleForm open={open} setOpen={setOpen}/>:null
+            }
             <ScheduleListBox>
                 {myData.map((schedule, index) => (
                     <ScheduleCard
