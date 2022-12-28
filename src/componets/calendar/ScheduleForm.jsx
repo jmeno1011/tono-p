@@ -44,49 +44,108 @@ const Row = styled.div`
         flex: 1;
     }
 `
-const DateBox = styled.div`
-    padding: 8px 14px;
-    display: flex;
-    align-items: center;
-    background-color: #fff;
-    h5{
-        margin-right: 8px;
+const RadioColor = styled.label`
+    display: block;
+    height: 1.25rem;
+    width: 1.25rem;
+    position: relative;
+    background-color: ${(props) => props.color};
+    margin-right: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    input{
+        position: absolute;
+        opacity: 0;
+        height: 0;
+        width: 0;
     }
-
+    span{
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 1.25rem;
+        width: 1.25rem;
+        background-color: transparent;
+        border-radius: 50%;
+    }
+    & input:checked ~span{
+        /* border: 3px solid #2196F3; */
+        border: 3px solid #333;
+    }
 `
-const ScheduleForm = ({open, setOpen}) => {
+const ScheduleForm = ({ open, setOpen }) => {
     const [title, setTitle] = useState("New event");
     const [startDate, setStartDate] = useState(new Date());
-    const saveSchedule = (e)=>{
-        e.preventDefault()
+    const [color, setColor] = useState("#ca4747");
+
+    const saveSchedule = (e) => {
+        e.preventDefault();
         const data = {
             title,
+            startDate,
+            color
         }
         console.log(data);
         setTitle("")
     }
-  return (
-    <ScheduleFormBlock onSubmit={saveSchedule}>
-        <ScheduleFormHeader>
-            <button onClick={()=>setOpen(!open)}>Cancel</button>
-            <h4>New event</h4>
-            <button>Add</button>
-        </ScheduleFormHeader>
-        <Row>
-            <h5>Title</h5>
-            <input type={"text"} value={title} onChange={e=>setTitle(e.target.value)} />
-        </Row>
-        
-        <Row>
-            <h5>Date</h5>
-            <ReactDatePicker dateFormat="yyyy-MM-dd" selected={startDate} onChange={(date) => setStartDate(date)} />
-        </Row>
-        <Row>
-            <h5>Color</h5>
-            
-        </Row>
-    </ScheduleFormBlock>
-  )
+
+    return (
+        <ScheduleFormBlock onSubmit={saveSchedule}>
+            <ScheduleFormHeader>
+                <button type='button' onClick={() => setOpen(!open)}>Cancel</button>
+                <h4>New event</h4>
+                <button type='submit'>Add</button>
+            </ScheduleFormHeader>
+            <Row>
+                <h5>Title</h5>
+                <input type={"text"} value={title} onChange={e => setTitle(e.target.value)} />
+            </Row>
+
+            <Row>
+                <h5>Date</h5>
+                <ReactDatePicker dateFormat="yyyy-MM-dd" selected={startDate} onChange={(date) => setStartDate(date)} />
+            </Row>
+            <Row>
+                <h5>Color</h5>
+                <RadioColor color="#ca4747">
+                    <input
+                        type="radio"
+                        name="color"
+                        value="#ca4747"
+                        checked={color !== undefined ? color === "#ca4747" : undefined}
+                        onChange={e => setColor(e.target.value)} />
+                    <span></span>
+                </RadioColor>
+                <RadioColor color="#cc9900">
+                    <input
+                        type="radio"
+                        name="color"
+                        value="#cc9900"
+                        checked={color !== undefined ? color === "#cc9900" : undefined}
+                        onChange={e => setColor(e.target.value)} />
+                    <span></span>
+                </RadioColor>
+                <RadioColor color="#339966">
+                    <input
+                        type="radio"
+                        name="color"
+                        value="#339966"
+                        checked={color !== undefined ? color === "#339966" : undefined}
+                        onChange={e => setColor(e.target.value)} />
+                    <span></span>
+                </RadioColor>
+                <RadioColor color="#9e9e9e">
+                    <input
+                        type="radio"
+                        name="color"
+                        value="#9e9e9e"
+                        checked={color !== undefined ? color === "#9e9e9e" : undefined}
+                        onChange={e => setColor(e.target.value)} />
+                    <span></span>
+                </RadioColor>
+            </Row>
+        </ScheduleFormBlock>
+    )
 }
 
 export default ScheduleForm
