@@ -6,7 +6,7 @@ import ScheduleCard from './ScheduleCard'
 const ScheduleListBlock = styled.div`
     min-width: 300px;
     margin-right: 16px;
-    background-color: #F7F7F7;
+    /* background-color: #F7F7F7; */
     overflow: hidden;
     border-radius: 8px;
 `
@@ -25,9 +25,12 @@ const ScheduleAddBlock = styled.div`
         background-color: #CFF2EF;
     }
 `
+const ScheduleListBox = styled.div`
+    padding-top: 8px;
+`
 
 const ScheduleList = () => {
-    const addEvent = ()=>{
+    const addEvent = () => {
         console.log("이벤트 추가");
     }
     return (
@@ -35,7 +38,16 @@ const ScheduleList = () => {
             <ScheduleAddBlock onClick={addEvent}>
                 <Icon icon="material-symbols:add" /><span>새 이벤트</span>
             </ScheduleAddBlock>
-            <ScheduleCard />
+            <ScheduleListBox>
+                {myData.map((schedule, index) => (
+                    <ScheduleCard
+                        key={`${index}_${schedule.title}`}
+                        title={schedule.title}
+                        date={schedule.end}
+                        color={schedule.color}
+                    />
+                ))}
+            </ScheduleListBox>
         </ScheduleListBlock>
     )
 }

@@ -1,4 +1,13 @@
 import React from 'react'
+import styled from 'styled-components'
+
+const ScheduleCardBlock = styled.div`
+    padding: 8px;
+    margin-bottom: 6px;
+    background-color: #fff;
+    border-left: 4px solid ${(props)=>props.color};
+    overflow: hidden;
+`
 
 /*
 * 예시 데이터
@@ -10,11 +19,11 @@ import React from 'react'
 }
 */
 
-const ScheduleCard = () => {
+const ScheduleCard = ({title, date, color}) => {
   return (
-    <div>
-        ScheduleCard
-    </div>
+    <ScheduleCardBlock color={color} className="box-sd">
+        <h5>{title}</h5>
+    </ScheduleCardBlock>
   )
 }
 
