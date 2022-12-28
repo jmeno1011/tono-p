@@ -33,7 +33,7 @@ const Row = styled.div`
     background-color: #fff;
     border-bottom: 1px solid #e3e3e3;
     h5{
-        margin-right: 16px;
+        min-width: 90px;
     }
     input{
         outline: none;
@@ -42,6 +42,11 @@ const Row = styled.div`
         padding: 4px;
         font-size: 0.875rem;
         flex: 1;
+    }
+    textarea{
+        outline: none;
+        border: none;
+        resize: none;
     }
 `
 const RadioColor = styled.label`
@@ -75,6 +80,7 @@ const RadioColor = styled.label`
 `
 const ScheduleForm = ({ open, setOpen }) => {
     const [title, setTitle] = useState("New event");
+    const [description, setDescription] = useState("New event description1\nNew event description2");
     const [startDate, setStartDate] = useState(new Date());
     const [color, setColor] = useState("#ca4747");
 
@@ -82,11 +88,13 @@ const ScheduleForm = ({ open, setOpen }) => {
         e.preventDefault();
         const data = {
             title,
+            description,
             startDate,
             color
         }
         console.log(data);
         setTitle("")
+        setDescription("")
     }
 
     return (
@@ -98,9 +106,12 @@ const ScheduleForm = ({ open, setOpen }) => {
             </ScheduleFormHeader>
             <Row>
                 <h5>Title</h5>
-                <input type={"text"} value={title} onChange={e => setTitle(e.target.value)} />
+                <input type={"text"} placeholder="..." value={title} onChange={e => setTitle(e.target.value)} />
             </Row>
-
+            <Row>
+                <h5>Description</h5>
+                <textarea rows={2} placeholder="..." value={description} onChange={e=>setDescription(e.target.value)} />
+            </Row>
             <Row>
                 <h5>Date</h5>
                 <ReactDatePicker dateFormat="yyyy-MM-dd" selected={startDate} onChange={(date) => setStartDate(date)} />
