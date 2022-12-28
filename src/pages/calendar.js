@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import CalendarComp from '../componets/calendar/CalendarComp'
+import ScheduleList from '../componets/calendar/ScheduleList'
 
 const CalendarBlock = styled.div`
     display: flex;
@@ -12,7 +13,7 @@ const CalendarBlock = styled.div`
 const Calendar = () => {
     return (
         <CalendarBlock className='layout'>
-            <div>Calendar</div>
+            <ScheduleList />
             <CalendarComp />
         </CalendarBlock>
     )
