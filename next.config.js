@@ -4,7 +4,7 @@ const nextConfig = {
     swcMinify: true,
     images:{
       domains:["meno-image-storage.s3.ap-northeast-2.amazonaws.com"]
-    }
+    },
   }
   
 module.exports = nextConfig;

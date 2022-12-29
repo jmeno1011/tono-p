@@ -1,4 +1,5 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import CalendarComp from '../componets/calendar/CalendarComp'
 import ScheduleList from '../componets/calendar/ScheduleList'
@@ -12,6 +13,14 @@ const CalendarBlock = styled.div`
 `
 
 const Calendar = () => {
+    const getTh = ()=>{
+        axios.get('/api/th').then(res=>{
+            console.log(res.data);
+        })
+    }
+    useEffect(()=>{
+        getTh()
+    },[])
     return (
         <CalendarBlock className='layout'>
             <ScheduleList />
@@ -20,4 +29,4 @@ const Calendar = () => {
     )
 }
 
-export default Calendar
+export default Calendar;
