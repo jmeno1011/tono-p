@@ -1,4 +1,4 @@
-[vercel page 주소](https://tono-p.vercel.app/)
+[vercel page 주소](https://tono-p.vercel.app/). 
 public 폴더에는 정적인 에셋들을 저장해준다.
 웹팩 관련된 설정은 next.config.js 에서 설정을 하면 된다.
 
