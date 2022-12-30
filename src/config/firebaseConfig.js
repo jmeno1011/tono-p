@@ -1,5 +1,4 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore"
 import { getDatabase } from "firebase/database";
 
 const firebaseConfig = {
@@ -18,4 +17,3 @@ export const app = initializeApp(firebaseConfig);
 
 // Initialize Realtime Database and get a reference to the service
 export const database = getDatabase(app);
-export const firestore = getFirestore(app);
