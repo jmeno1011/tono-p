@@ -14,6 +14,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
+console.log(app);
 
 // Initialize Realtime Database and get a reference to the service
 export const database = getDatabase(app);
