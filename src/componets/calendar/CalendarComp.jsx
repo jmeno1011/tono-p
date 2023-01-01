@@ -8,6 +8,7 @@ const CalendarCompBlock = styled.div`
     width: 100%;
     overflow: hidden;
     background-color: #F7F7F7;
+    min-width: 420px;
 `
 const CalendarBodyHeader = styled.header`
     display: grid;
