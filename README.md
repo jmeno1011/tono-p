@@ -11,6 +11,7 @@ public 폴더에는 정적인 에셋들을 저장해준다.
 - 5차 : npm install dayjs --save 날짜 포멧을 지정하기 위해 추가 - 달력 페이지에서 
 - 6차 : npm install react-datepicker --save 일정 추가를 위해 날짜 지정용
 - 7차 : npm install --save firebase-admin, firebase 백엔드에서 firebase에 데이터베이스를 사용하기 위함
+- 8차 : firebase는 필요 없고 firebase-admin은 필요함 필요없는 라이브러리는 삭제
 
 ### css 
 - primary-color : #35BCB2;
