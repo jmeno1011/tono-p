@@ -1,4 +1,4 @@
 export default function handler(req, res) {
-    res.status(200).json({ message: 'Hello from Next.js!' })
+    res.status(200).send({ message: 'Hello from Next.js!' })
   }
   

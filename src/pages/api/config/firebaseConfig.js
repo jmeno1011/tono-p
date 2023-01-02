@@ -1,5 +1,5 @@
 const admin = require("firebase-admin");
-const serviceAccountKey = require("../../serviceAccountKey.json");
+const serviceAccountKey = require("../../../../serviceAccountKey.json");
 
 // console.log(process.env.FBASE_DATABASE_URL);
 
