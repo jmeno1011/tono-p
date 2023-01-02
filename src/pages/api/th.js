@@ -20,5 +20,4 @@ export default (req, res) => {
         const data = snapshot.val()
         console.log(data);
     })
-
 }

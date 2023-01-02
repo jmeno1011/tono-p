@@ -10,6 +10,7 @@ public 폴더에는 정적인 에셋들을 저장해준다.
 - 4차 : npm install axios api를 받아오기 위해서 다운 / npm install --save-dev @iconify/react icon사용을 위해 다운
 - 5차 : npm install dayjs --save 날짜 포멧을 지정하기 위해 추가 - 달력 페이지에서 
 - 6차 : npm install react-datepicker --save 일정 추가를 위해 날짜 지정용
+- 7차 : npm install --save firebase-admin, firebase 백엔드에서 firebase에 데이터베이스를 사용하기 위함
 
 ### css 
 - primary-color : #35BCB2;
