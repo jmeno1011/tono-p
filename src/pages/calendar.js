@@ -14,7 +14,7 @@ const CalendarBlock = styled.div`
 
 const Calendar = () => {
     const getTh = ()=>{
-        axios.get('/api/user').then(res=>{
+        axios.get('/api/calendar').then(res=>{
             console.log(res.data);
         })
     }

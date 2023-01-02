@@ -7,9 +7,9 @@ import ScheduleForm from './ScheduleForm'
 const ScheduleListBlock = styled.div`
     min-width: 300px;
     background-color: #F7F7F7;
-    overflow: hidden;
     border-radius: 8px;
     position: relative;
+    z-index: 1;
 `
 
 const ScheduleAddBlock = styled.div`
@@ -29,7 +29,9 @@ const ScheduleAddBlock = styled.div`
 const ScheduleListBox = styled.div`
     padding-top: 8px;
     background-color: #fff;
+    border-radius: 8px;
     height: calc(100% - 57px);
+    overflow: hidden;
 `
 
 const ScheduleList = () => {
@@ -44,7 +46,7 @@ const ScheduleList = () => {
                 <Icon icon="material-symbols:add" /><span>New event</span>
             </ScheduleAddBlock>
             {
-                open?<ScheduleForm open={open} setOpen={setOpen}/>:null
+                open ? <ScheduleForm open={open} setOpen={setOpen} /> : null
             }
             <ScheduleListBox>
                 {myData.map((schedule, index) => (

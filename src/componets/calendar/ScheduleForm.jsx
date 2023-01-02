@@ -32,6 +32,7 @@ const Row = styled.div`
     align-items: center;
     background-color: #fff;
     border-bottom: 1px solid #e3e3e3;
+    position: relative;
     h5{
         min-width: 90px;
     }
