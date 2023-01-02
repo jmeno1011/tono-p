@@ -21,10 +21,13 @@ const Cell = styled.div`
     border-right: 1px solid #e3e3e3;
     color: ${(props) => (props.color)};
     font-weight: 500;
-    >span{
+    div:first-child{
         display: flex;
-        justify-content: end;
+        justify-content: flex-end;
         margin-bottom: 4px;
+        .now-date{
+            color: red;
+        }
     }
 `
 const Schedule = styled.div`
@@ -126,9 +129,11 @@ const CalendarBody = ({ currnetDay }) => {
                                         key={date}
                                         color={dayjs(date).isBetween(monthStartDate.subtract(1, "day"), monthEndDate) ? "black" : "gray"}
                                     >
-                                        <span>
-                                            {dayjs(date).format("D") === "1" ? dayjs(date).format("MMM D") : dayjs(date).format("D")}
-                                        </span>
+                                        <div>
+                                            <span className={date === dayjs(Date.now()).format("YYYY-MM-DD") ? 'now-date' : null}>
+                                                {dayjs(date).format("D") === "1" ? dayjs(date).format("MMM D") : dayjs(date).format("D")}
+                                            </span>
+                                        </div>
                                         {
                                             myData.filter(el => el.start === dayjs(date).format("YYYY-MM-DD")).map((value, index) => (
                                                 <Schedule key={`${index}_${value.title}`} bgColor={value.color}>
