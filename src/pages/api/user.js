@@ -1,13 +1,13 @@
-
+const db = require("../../config/firebaseConfig")
 export default (req, res) => {
-    console.log(req.url);
-    console.log(req.url.slice(1));
-    
-    // const dbRef = ref(database, 'test');
-    // console.log(dbRef);
-    // onValue(dbRef, (snapshot)=>{
-    //     const data = snapshot.val()
-    //     console.log(data);
-    // })
-    res.send("hello")
+    const url = req.url;
+    const ref = db.ref(url);
+    // console.log(ref);
+    ref.once("value", (snapshot) => {
+        console.log(snapshot.val());
+        return res.status(200).send(snapshot.val());
+    }, (errorObject) => {
+        console.log("The read failed: ", errorObject.name);
+        return res.status(500).send({ "error": errorObject.name });
+    })
 }

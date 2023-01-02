@@ -1,20 +1,17 @@
-import { initializeApp } from "firebase/app";
-import { getDatabase } from "firebase/database";
-import admin from "firebase-admin";
+const admin = require("firebase-admin");
+const serviceAccountKey = require("../../serviceAccountKey.json");
 
-const firebaseConfig = {
-    apiKey: process.env.FBASE_APIKEY,
-    authDomain: process.env.FBASE_AUTH_DOMAIN,
-    databaseURL: process.env.FBASE_DATABASE_URL,
-    projectId: process.env.FBASE_PROJECT_ID,
-    storageBucket: process.env.FBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.FBASE_MESSAGESENDER_ID,
-    appId: process.env.FBASE_APP_ID,
-    measurementId: process.env.FBASE_MEASURMENT_ID,
-};
+// console.log(process.env.FBASE_DATABASE_URL);
 
-// Initialize Firebase
-export const app = initializeApp(firebaseConfig);
+if (!admin.apps.length) {
+    console.log("init - admin");
+    admin.initializeApp({
+        credential: admin.credential.cert(serviceAccountKey),
+        databaseURL: process.env.FBASE_DATABASE_URL
+    })
+} else {
+    admin.app();
+}
 
-// Initialize Realtime Database and get a reference to the service
-export const database = getDatabase(app);
+const db = admin.database();
+module.exports = db;

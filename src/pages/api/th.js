@@ -1,23 +1,13 @@
-import { child, get, onValue, ref } from "firebase/database";
-import database from "../../config/firebaseConfig"
-
-/* get db example
-import { getDatabase, ref, onValue} from "firebase/database";
-
-const db = getDatabase();
-const starCountRef = ref(db, 'posts/' + postId + '/starCount');
-onValue(starCountRef, (snapshot) => {
-  const data = snapshot.val();
-  updateStarCount(postElement, data);
-});
-*/
-
+const db = require("../../config/firebaseConfig")
 export default (req, res) => {
-    console.log(database);
-    const dbRef = ref(database, 'test');
-    console.log(dbRef);
-    onValue(dbRef, (snapshot)=>{
-        const data = snapshot.val()
-        console.log(data);
+    const url = req.url.slice(1);
+    
+    const ref = db.ref(url);
+    ref.on("value", (snapshot) => {
+        console.log(snapshot.val());
+        return res.status(200).send(snapshot.val());
+    }, (errorObject) => {
+        console.log("The read failed: ", errorObject.name);
+        return res.status(500).send({ "error": errorObject.name });
     })
 }
