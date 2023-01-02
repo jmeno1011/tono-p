@@ -21,7 +21,7 @@ const CalendarBodyHeader = styled.header`
         padding-right: 8px;
     }
 `
-const CalendarComp = () => {
+const CalendarComp = ({data}) => {
     const [currnetDay, setCurrnetDay] = useState(new Date);
     const datename = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
@@ -35,7 +35,7 @@ const CalendarComp = () => {
                     </div>
                 ))}
             </CalendarBodyHeader>
-        <CalendarBody currnetDay={currnetDay}/>
+        <CalendarBody data={data} currnetDay={currnetDay}/>
     </CalendarCompBlock>
   )
 }

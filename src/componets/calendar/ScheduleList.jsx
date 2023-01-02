@@ -34,7 +34,7 @@ const ScheduleListBox = styled.div`
     overflow: hidden;
 `
 
-const ScheduleList = () => {
+const ScheduleList = ({data}) => {
     const [open, setOpen] = useState(false);
     const addEvent = () => {
         console.log("이벤트 추가");
@@ -49,7 +49,7 @@ const ScheduleList = () => {
                 open ? <ScheduleForm open={open} setOpen={setOpen} /> : null
             }
             <ScheduleListBox>
-                {myData.map((schedule, index) => (
+                {data.map((schedule, index) => (
                     <ScheduleCard
                         key={`${index}_${schedule.title}`}
                         title={schedule.title}
@@ -62,27 +62,4 @@ const ScheduleList = () => {
     )
 }
 
-export default ScheduleList
-
-const myData = [{
-    title: 'Fixed event',
-    start: '2022-12-18T00:00',
-    end: '2022-12-19T00:00',
-    color: '#9e9e9e',
-    editable: false
-}, {
-    title: 'Drag me',
-    start: '2022-12-03T00:00',
-    end: '2022-12-05T00:00',
-    color: '#cc9900'
-}, {
-    title: 'Resize me',
-    start: '2022-12-24T00:00',
-    end: '2022-12-29T00:00',
-    color: '#ca4747'
-}, {
-    title: 'Move me around',
-    start: '2022-12-11T00:00',
-    end: '2022-12-14T00:00',
-    color: '#339966'
-}];
+export default ScheduleList;

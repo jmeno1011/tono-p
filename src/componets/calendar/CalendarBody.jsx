@@ -58,7 +58,7 @@ const Schedule = styled.div`
     }
 `
 
-const CalendarBody = ({ currnetDay }) => {
+const CalendarBody = ({ data, currnetDay }) => {
     const [calendars, setCalendars] = useState([]);
     const monthStartDate = dayjs(currnetDay).startOf("month")
     const monthEndDate = dayjs(currnetDay).endOf("month")
@@ -135,7 +135,7 @@ const CalendarBody = ({ currnetDay }) => {
                                             </span>
                                         </div>
                                         {
-                                            myData.filter(el => el.start === dayjs(date).format("YYYY-MM-DD")).map((value, index) => (
+                                            data.filter(el => el.start === dayjs(date).format("YYYY-MM-DD")).map((value, index) => (
                                                 <Schedule key={`${index}_${value.title}`} bgColor={value.color}>
                                                     <div>
                                                         <span>{value.title}</span>
@@ -155,25 +155,3 @@ const CalendarBody = ({ currnetDay }) => {
 }
 
 export default CalendarBody;
-const myData = [{
-    title: 'Fixed event',
-    start: '2022-12-18',
-    end: '2022-12-19',
-    color: '#9e9e9e',
-    editable: false
-}, {
-    title: 'Drag me',
-    start: '2022-12-03',
-    end: '2022-12-05',
-    color: '#cc9900'
-}, {
-    title: 'Resize me',
-    start: '2022-12-24',
-    end: '2022-12-29',
-    color: '#ca4747'
-}, {
-    title: 'Move me around',
-    start: '2022-12-11',
-    end: '2022-12-14',
-    color: '#339966'
-}];
