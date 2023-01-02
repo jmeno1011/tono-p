@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import ReactDatePicker from 'react-datepicker'
 import styled from 'styled-components'
+import { v4 as uuidv4 } from 'uuid';
 import "react-datepicker/dist/react-datepicker.css";
 
 const ScheduleFormBlock = styled.form`
@@ -89,10 +90,13 @@ const ScheduleForm = ({ open, setOpen }) => {
     const saveSchedule = (e) => {
         e.preventDefault();
         const data = {
+            id:uuidv4(),
             title,
             description,
-            startDate,
-            color
+            start : startDate,
+            end: startDate,
+            color,
+            createdAt: Date.now()
         }
         console.log(data);
         setTitle("")
