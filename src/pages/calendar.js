@@ -45,7 +45,7 @@ const Calendar = () => {
     }
     useEffect(()=>{
         getTh()
-    },[])
+    },[data])
     return (
         <CalendarBlock className='layout'>
             <ScheduleList data={data} setData={setData} />

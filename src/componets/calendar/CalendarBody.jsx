@@ -56,6 +56,9 @@ const Schedule = styled.div`
         border-radius: 6px;
         opacity: 0.5;
     }
+    &{
+        margin-bottom: 4px;
+    }
 `
 
 const CalendarBody = ({ data, currnetDay }) => {
@@ -115,14 +118,6 @@ const CalendarBody = ({ data, currnetDay }) => {
             setCalendars([])
         }
     }, [currnetDay])
-    useEffect(()=>{
-        console.log("변경후");
-        console.log(data);
-        return ()=>{
-            console.log("변경전");
-            console.log(data);
-        }
-    },[data])
     
     return (
         <CalendarBodyBlock>
@@ -143,7 +138,7 @@ const CalendarBody = ({ data, currnetDay }) => {
                                             </span>
                                         </div>
                                         {
-                                            data.filter(el => el.startdate === dayjs(date).format("YYYY-MM-DD")).map((value, index) => (
+                                            data.filter(el => dayjs(el.startdate).format("YYYY-MM-DD")  === dayjs(date).format("YYYY-MM-DD")).map((value, index) => (
                                                 <ScheduleBox
                                                     key={`${index}_${value.title}`}
                                                     title={value.title}

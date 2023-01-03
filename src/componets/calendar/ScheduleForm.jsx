@@ -90,19 +90,20 @@ const ScheduleForm = ({ open, setOpen, data, setData }) => {
     const saveSchedule = (e) => {
         e.preventDefault();
         const newData = {
-            // id:uuidv4(),
+            id:uuidv4(),
             title,
             description,
             startdate : startDate,
             enddate: startDate,
             color,
-            // createdAt: Date.now()
+            createdAt: Date.now()
         }
         // console.log(typeof data);
         setData([...data, newData])
         console.log(newData);
         setTitle("")
         setDescription("")
+        setOpen(!open)
     }
 
     return (
