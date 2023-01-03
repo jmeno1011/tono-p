@@ -9,7 +9,7 @@ const CalendarBodyBlock = styled.div`
 `
 const CalendarRow = styled.div`
     display: grid;
-    grid-template-columns: repeat(7, minmax(60px, 1fr));
+    grid-template-columns: repeat(7, minmax(50px, 1fr));
     border-bottom: 1px solid #e3e3e3;
     >div:last-child{
         border: none;
@@ -21,6 +21,7 @@ const Cell = styled.div`
     border-right: 1px solid #e3e3e3;
     color: ${(props) => (props.color)};
     font-weight: 500;
+    font-size: 1em;
     div:first-child{
         display: flex;
         justify-content: flex-end;
@@ -35,15 +36,17 @@ const Schedule = styled.div`
     align-items: center;
     font-size: 0.625rem;
     position: relative;
+    cursor: pointer;
     div>span{
         position: relative;
         display: inline-block;
         padding: 2px 4px;
         opacity: 1;
-        font-size: 1.1em;
+        font-size: 1em;
         text-overflow: ellipsis;
         z-index: 2;
     }
+    
     >span{
         z-index: 1;
         display: block;
@@ -141,6 +144,7 @@ const CalendarBody = ({ data, currnetDay }) => {
                                             data.filter(el => dayjs(el.startdate).format("YYYY-MM-DD")  === dayjs(date).format("YYYY-MM-DD")).map((value, index) => (
                                                 <ScheduleBox
                                                     key={`${index}_${value.title}`}
+                                                    content={value}
                                                     title={value.title}
                                                     color={value.color}
                                                 />
@@ -158,9 +162,12 @@ const CalendarBody = ({ data, currnetDay }) => {
 
 export default CalendarBody;
 
-function ScheduleBox({ title, color }) {
+function ScheduleBox({ content, title, color }) {
+    const clickedSchedule = ()=>{
+        console.log(content);
+    }
     return (
-        <Schedule bgColor={color}>
+        <Schedule bgColor={color} onClick={clickedSchedule}>
             <div>
                 <span>{title}</span>
             </div>

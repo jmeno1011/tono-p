@@ -44,7 +44,7 @@ const Calendar = () => {
         })
     }
     useEffect(()=>{
-        getTh()
+        // getTh()
     },[data])
     return (
         <CalendarBlock className='layout'>

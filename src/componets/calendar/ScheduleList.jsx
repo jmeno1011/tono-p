@@ -32,6 +32,16 @@ const ScheduleListBox = styled.div`
     border-radius: 8px;
     height: calc(100% - 57px);
     overflow: hidden;
+    max-height: 355px;
+    overflow-y: auto;
+    &::-webkit-scrollbar{
+        width: 6px;
+    }
+    &::-webkit-scrollbar-thumb{
+        background-color: rgba(0,0,0,.1);
+        opacity: 0.1;
+        border-radius: 10px;
+    }
 `
 
 const ScheduleList = ({data, setData}) => {
