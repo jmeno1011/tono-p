@@ -34,10 +34,9 @@ const ScheduleListBox = styled.div`
     overflow: hidden;
 `
 
-const ScheduleList = ({data}) => {
+const ScheduleList = ({data, setData}) => {
     const [open, setOpen] = useState(false);
     const addEvent = () => {
-        console.log("이벤트 추가");
         setOpen(!open)
     }
     return (
@@ -46,14 +45,15 @@ const ScheduleList = ({data}) => {
                 <Icon icon="material-symbols:add" /><span>New event</span>
             </ScheduleAddBlock>
             {
-                open ? <ScheduleForm open={open} setOpen={setOpen} /> : null
+                open ? <ScheduleForm open={open} setOpen={setOpen} data={data} setData={setData} /> : null
             }
             <ScheduleListBox>
                 {data.map((schedule, index) => (
                     <ScheduleCard
                         key={`${index}_${schedule.title}`}
                         title={schedule.title}
-                        date={schedule.end}
+                        description={schedule.description}
+                        date={schedule.startdate}
                         color={schedule.color}
                     />
                 ))}

@@ -15,24 +15,27 @@ const CalendarBlock = styled.div`
 const Calendar = () => {
     const [data, setData] = useState([{
         title: 'Fixed event',
-        start: '2022-12-18',
-        end: '2022-12-19',
+        description:'Fixed event',
+        startdate: '2022-12-18',
+        enddate: '2022-12-19',
         color: '#9e9e9e',
-        editable: false
     }, {
         title: 'Drag me',
-        start: '2022-12-03',
-        end: '2022-12-05',
+        description:'Drag me',
+        startdate: '2022-12-03',
+        enddate: '2022-12-05',
         color: '#cc9900'
     }, {
         title: 'Resize me',
-        start: '2022-12-24',
-        end: '2022-12-29',
+        description:'Resize me',
+        startdate: '2022-12-24',
+        enddate: '2022-12-29',
         color: '#ca4747'
     }, {
         title: 'Move me around',
-        start: '2022-12-11',
-        end: '2022-12-14',
+        description:'Move me around',
+        startdate: '2022-12-11',
+        enddate: '2022-12-14',
         color: '#339966'
     }])
     const getTh = ()=>{
@@ -45,8 +48,8 @@ const Calendar = () => {
     },[])
     return (
         <CalendarBlock className='layout'>
-            <ScheduleList data={data} />
-            <CalendarComp data={data}/>
+            <ScheduleList data={data} setData={setData} />
+            <CalendarComp data={data} />
         </CalendarBlock>
     )
 }

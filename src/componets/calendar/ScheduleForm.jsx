@@ -80,7 +80,7 @@ const RadioColor = styled.label`
         border: 3px solid #333;
     }
 `
-const ScheduleForm = ({ open, setOpen }) => {
+const ScheduleForm = ({ open, setOpen, data, setData }) => {
     const [title, setTitle] = useState("New event");
     const [description, setDescription] = useState("New event description1\nNew event description2");
     const [startDate, setStartDate] = useState(new Date());
@@ -89,16 +89,18 @@ const ScheduleForm = ({ open, setOpen }) => {
 
     const saveSchedule = (e) => {
         e.preventDefault();
-        const data = {
-            id:uuidv4(),
+        const newData = {
+            // id:uuidv4(),
             title,
             description,
-            start : startDate,
-            end: startDate,
+            startdate : startDate,
+            enddate: startDate,
             color,
-            createdAt: Date.now()
+            // createdAt: Date.now()
         }
-        console.log(data);
+        // console.log(typeof data);
+        setData([...data, newData])
+        console.log(newData);
         setTitle("")
         setDescription("")
     }
@@ -142,4 +144,25 @@ const ScheduleForm = ({ open, setOpen }) => {
     )
 }
 
-export default ScheduleForm
+export default ScheduleForm;
+
+// ex date-picker start~end
+// () => {
+//     const [startDate, setStartDate] = useState(new Date());
+//     const [endDate, setEndDate] = useState(null);
+//     const onChange = (dates) => {
+//       const [start, end] = dates;
+//       setStartDate(start);
+//       setEndDate(end);
+//     };
+//     return (
+//       <DatePicker
+//         selected={startDate}
+//         onChange={onChange}
+//         startDate={startDate}
+//         endDate={endDate}
+//         selectsRange
+//         inline
+//       />
+//     );
+//   };

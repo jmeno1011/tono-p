@@ -115,7 +115,15 @@ const CalendarBody = ({ data, currnetDay }) => {
             setCalendars([])
         }
     }, [currnetDay])
-
+    useEffect(()=>{
+        console.log("변경후");
+        console.log(data);
+        return ()=>{
+            console.log("변경전");
+            console.log(data);
+        }
+    },[data])
+    
     return (
         <CalendarBodyBlock>
             {/* 달력 바디 */}
@@ -135,13 +143,12 @@ const CalendarBody = ({ data, currnetDay }) => {
                                             </span>
                                         </div>
                                         {
-                                            data.filter(el => el.start === dayjs(date).format("YYYY-MM-DD")).map((value, index) => (
-                                                <Schedule key={`${index}_${value.title}`} bgColor={value.color}>
-                                                    <div>
-                                                        <span>{value.title}</span>
-                                                    </div>
-                                                    <span></span>
-                                                </Schedule>
+                                            data.filter(el => el.startdate === dayjs(date).format("YYYY-MM-DD")).map((value, index) => (
+                                                <ScheduleBox
+                                                    key={`${index}_${value.title}`}
+                                                    title={value.title}
+                                                    color={value.color}
+                                                />
                                             ))
                                         }
 
@@ -155,3 +162,14 @@ const CalendarBody = ({ data, currnetDay }) => {
 }
 
 export default CalendarBody;
+
+function ScheduleBox({ title, color }) {
+    return (
+        <Schedule bgColor={color}>
+            <div>
+                <span>{title}</span>
+            </div>
+            <span></span>
+        </Schedule>
+    )
+}
