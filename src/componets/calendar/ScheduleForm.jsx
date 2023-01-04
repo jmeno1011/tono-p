@@ -3,6 +3,7 @@ import ReactDatePicker from 'react-datepicker'
 import styled from 'styled-components'
 import { v4 as uuidv4 } from 'uuid';
 import "react-datepicker/dist/react-datepicker.css";
+import axios from 'axios';
 
 const ScheduleFormBlock = styled.form`
     position: absolute;
@@ -99,6 +100,11 @@ const ScheduleForm = ({ open, setOpen, data, setData }) => {
             createdAt: Date.now()
         }
         // console.log(typeof data);
+        axios.post('/api/calendar/tono',{
+            newData
+        }).then(res=>{
+            console.log(res.data);
+        })
         setData([...data, newData])
         console.log(newData);
         setTitle("")
