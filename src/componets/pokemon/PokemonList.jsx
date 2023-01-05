@@ -103,6 +103,7 @@ const PokemonList = ({ pokemons, setFilterPokemon }) => {
                             // 33vw'
                             height={100}
                             width={100}
+                            alt={`${value.no}_${value.name}`}
                         />
                         <CardInfo>
                             <h5>No. {attachZero(value.no)}</h5>
