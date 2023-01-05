@@ -95,14 +95,26 @@ const PokemonList = ({ pokemons, setFilterPokemon }) => {
             <div>
                 {pokemons.map((value) => (
                     <Card key={value.no}>
-                        <Image src={value.url} height={100} width={100}  />
+                        <Image
+                            src={value.url}
+                            fill
+                            // sizes='(max-width: 768px) 100vw, 
+                            // (max-width: 1200px) 50vw, 
+                            // 33vw'
+                            height={100}
+                            width={100}
+                        />
                         <CardInfo>
                             <h5>No. {attachZero(value.no)}</h5>
                             <h4>{value.name}</h4>
                         </CardInfo>
                         <CardBottom>
                             {value.type.split(",").map(types => (
-                                <TypeSpan key={`${value.name}_${types}`} data-value={types} onClick={selectType}>
+                                <TypeSpan
+                                    key={`${value.name}_${types}`}
+                                    data-value={types}
+                                    onClick={selectType}
+                                >
                                     {types}
                                 </TypeSpan>
                             ))}
