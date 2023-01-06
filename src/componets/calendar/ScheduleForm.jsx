@@ -99,9 +99,12 @@ const ScheduleForm = ({ open, setOpen, data, setData }) => {
             color,
             createdAt: Date.now()
         }
-        // console.log(typeof data);
         axios.post('/api/calendar/tono',{
             newData
+        },{
+            headers:{
+                "Content-Type": "application/json"
+            }
         }).then(res=>{
             console.log(res.data);
         })

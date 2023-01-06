@@ -2,19 +2,18 @@ import { sliceUrl } from "../../../helpers/slice-url";
 import db from "../config/firebaseConfig";
 
 export default (req, res) => {
-    let url = req.url;
-    console.log(url);
-    url = sliceUrl('/api', url);
-    const ref = db.ref(url);
-    if(req.method === "POST"){
-        // ref.set()
-        res.send("post")
-    }else{
-        // ref.once("value", (snapshot) => {
-        //     return res.status(200).send(snapshot.val());
-        // }, (errorObject) => {
-        //     return res.status(500).send({ "error": errorObject.name });
-        // })
-        res.send("get")
+    const url = sliceUrl('/api', req.url);
+    const { newData } = req.body;
+
+    if (req.method === "POST") {
+        db.ref(url).push(newData)
+        // .then(res=>{console.log(res);})
+        // .catch(error=>{return res.status(500).json({ "error": error.name })})
+    } else {
+        db.ref(url).once("value", (snapshot) => {
+            res.status(200).json(snapshot.val());
+        }, (errorObject) => {
+            return res.status(500).json({ "error": errorObject.name });
+        })
     }
 }

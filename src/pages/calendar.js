@@ -39,12 +39,12 @@ const Calendar = () => {
         color: '#339966'
     }])
     const getTh = ()=>{
-        axios.get('/api/calendar').then(res=>{
-            console.log(res.data);
+        axios.get('/api/calendar/tono').then(res=>{
+            console.log("res.data::", res.data);
         })
     }
     useEffect(()=>{
-        // getTh()
+        getTh()
     },[data])
     return (
         <CalendarBlock className='layout'>
