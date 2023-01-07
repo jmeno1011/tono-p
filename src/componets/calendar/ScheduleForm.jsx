@@ -100,7 +100,7 @@ const ScheduleForm = ({ open, setOpen, data, setData }) => {
             createdAt: Date.now()
         }
         axios.post('/api/calendar/tono',{
-            newData
+            id:uuidv4(),newData
         },{
             headers:{
                 "Content-Type": "application/json"
