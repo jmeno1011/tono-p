@@ -13,6 +13,7 @@ public 폴더에는 정적인 에셋들을 저장해준다.
 - 7차 : npm install --save firebase-admin, firebase 백엔드에서 firebase에 데이터베이스를 사용하기 위함
 - 8차 : firebase는 필요 없고 firebase-admin은 필요함 필요없는 라이브러리는 삭제
 - 9차 : 스케쥴의 id를 위해 npm i uuid를 추가함 
+- 10차 : npm install react-apexcharts 차트 추가
 
 ### css 
 - primary-color : #35BCB2;

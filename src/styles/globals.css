@@ -1,29 +1,38 @@
 @import "./reset.css";
+
 html,
-body, textarea {
+body,
+textarea {
   padding: 0;
   margin: 0;
   font-family: 'Noto Sans KR', sans-serif;
   line-height: 1.5;
 }
-h1{
+
+h1 {
   font-size: 1.75rem;
 }
-h2{
+
+h2 {
   font-size: 1.5rem;
 }
-h3{
+
+h3 {
   font-size: 1.25rem;
 }
-h4{
+
+h4 {
   font-size: 1rem;
 }
-h5{
+
+h5 {
   font-size: 0.875rem;
 }
-h6{
+
+h6 {
   font-size: 0.75rem;
 }
+
 a {
   color: inherit;
   text-decoration: none;
@@ -34,40 +43,52 @@ a {
 }
 
 @media(min-width: 360px) {
-  .container{
+  .container {
     max-width: 90rem;
   }
 }
-@media(min-width: 768px){
-  .container{
+
+@media(min-width: 768px) {
+  .container {
     max-width: 90rem;
   }
 }
-@media(min-width: 992px){
-  .container{
+
+@media(min-width: 992px) {
+  .container {
     max-width: 80rem;
     margin-left: auto;
     margin-right: auto;
   }
 }
-@media(min-width: 1280px){
-  .container{
+
+@media(min-width: 1280px) {
+  .container {
     max-width: 100%;
   }
 }
 
-.container{
+.container {
   min-height: 100vh;
 }
 
-.Home-page{
+.Home-page {
   max-width: 1128px;
   margin: 0 auto;
   padding-top: 16px;
 }
-.layout{
+
+.layout {
   padding: 16px;
 }
-.box-sd{
+
+.box-sd {
   box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+}
+
+.box-sd2 {
+  box-shadow: rgb(90 114 123 / 11%) 0px 7px 30px 0px;
+}
+.mr-4{
+  margin-right: 16px;
 }
