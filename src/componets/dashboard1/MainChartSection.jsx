@@ -1,4 +1,6 @@
-import Chart from 'react-apexcharts'
+import dynamic from 'next/dynamic'
+// import Chart from 'react-apexcharts'
+const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 import styled from 'styled-components'
 const MainChartSectionBlock = styled.div`
     display: flex;
