@@ -1,4 +1,5 @@
-import { useState } from "react"
+import axios from "axios"
+import { useEffect, useState } from "react"
 import styled from "styled-components"
 
 const HeaderBlock = styled.header`
@@ -65,6 +66,7 @@ const list = [
 ];
 
 export default function Header() {
+    const [userList, setUserList] = useState([]);
     const [inputText, setInputText] = useState("");
     const [isFocus, setIsFocus] = useState(false);
     const [keyIndex, setKeyIndex] = useState(0);
@@ -122,6 +124,19 @@ export default function Header() {
     const onMouseOverListItems = (id) => {
         setKeyIndex(id);
     };
+    const getUserList = ()=>{
+        axios.get('/api/user-list')
+        .then(res => {
+            setUserList(res.data.map(user=>({
+                code : user.ep,
+                name : user.name
+            }))) 
+        })
+    }
+    console.log(userList);
+    useEffect(()=>{
+        getUserList()
+    },[])
     // TODO : list보여주븐 부분 다른 컴포넌트 useEffect 사용할 것
     return (
         <HeaderBlock>
