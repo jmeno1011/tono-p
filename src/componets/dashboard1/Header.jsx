@@ -1,4 +1,3 @@
-import axios from "axios"
 import { useEffect, useState } from "react"
 import styled from "styled-components"
 import SearchListBox from "./SearchListBox"
@@ -33,7 +32,6 @@ const InputBox = styled.div`
 `
 
 export default function Header({ list }) {
-    console.log(list);
     const [userList, setUserList] = useState([]);
     const [inputText, setInputText] = useState("");
     const [isFocus, setIsFocus] = useState(false);
@@ -70,33 +68,38 @@ export default function Header({ list }) {
     const onKeyDownInput = (e) => {
         // down key
         if (e.keyCode === 40) {
-            setIsFocus(true);
-            setKeyIndex(keyIndex + 1);
-        } else if (e.keyCode === 40 && keyIndex === userList.length - 1) {
-            setKeyIndex(0)
+            if (keyIndex === userList.length - 1) {
+                setKeyIndex(0)
+            } else {
+                setIsFocus(true);
+                setKeyIndex(keyIndex + 1);
+            }
         }
 
         // up key
         if (e.keyCode === 38) {
-            setKeyIndex(keyIndex - 1);
-            setIsFocus(false)
-        } else if (e.keyCode === 38 && keyIndex > -1) {
-            setKeyIndex(keyIndex - 1);
+            if (keyIndex > -1) {
+                setKeyIndex(keyIndex - 1);
+            } else if (keyIndex < -2) {
+                setKeyIndex(keyIndex - 1);
+                setIsFocus(false)
+            }
         }
 
         // enter key
         if (e.keyCode === 13) {
-            onSubmitHandle(
-                e,
-                userList.find(
-                    (value, index) =>
-                        index === keyIndex || value.name.includes(e.target.value))
+            if (keyIndex === -1) {
+                onSubmitHandle(e, e.target.value);
+            } else {
+                onSubmitHandle(
+                    e,
+                    userList.find(
+                        (value, index) =>
+                            index === keyIndex || value.name.includes(e.target.value))
                         .name
-            );
-        } else if (e.keyCode === 13 && keyIndex === -1) {
-            onSubmitHandle(e, e.target.value);
+                );
+            }
         }
-
     }
 
     useEffect(() => {
@@ -141,13 +144,3 @@ export default function Header({ list }) {
     )
 }
 
-export async function getServerSideProps() {
-    console.log("header log");
-    console.log("env",process.env.API_BASE_URL);
-    const apiUrl = process.env.API_BASE_URL;
-    const res = await axios.get(`${apiUrl}/user-list`);
-    console.log(res);
-    const data = res.data;
-
-    return { props: { list: data } }
-}

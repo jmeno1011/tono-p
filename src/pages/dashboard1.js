@@ -1,3 +1,4 @@
+import axios from "axios"
 import styled from "styled-components"
 import Header from "../componets/dashboard1/Header"
 import MainChartSection from "../componets/dashboard1/MainChartSection"
@@ -17,14 +18,21 @@ const Dashboard1Body = styled.main`
     gap: 16px;
 `
 
-export default function Dashboard1(){
+export default function Dashboard1({list}){
     return(
         <Dashboard1Block>
-            <Header />
+            <Header list={list} />
             <Dashboard1Body>
                 <StatusRow />
                 <MainChartSection />
             </Dashboard1Body>
         </Dashboard1Block>
     )
+}
+export async function getServerSideProps() {
+    const apiUrl = process.env.API_BASE_URL;
+    const res = await axios.get(`${apiUrl}/user-list`);
+    const data = res.data;
+
+    return { props: { list: data } }
 }
