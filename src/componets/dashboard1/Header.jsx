@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import styled from "styled-components"
+import SearchListBox from "./SearchListBox"
 
 const HeaderBlock = styled.header`
     padding: 16px;
@@ -31,45 +32,12 @@ const InputBox = styled.div`
     }
 `
 
-
-const ListBox = styled.div`
-    position: absolute;
-    top: 30px;
-    padding: 12px 8px 8px 8px;
-    border: 1px solid rgba(0,0,0,.1);
-    border-top: none;
-    width: 300px;
-    background-color: white;
-    z-index: 10;
-`
-
-const ListItem = styled.div`
-    padding: 4px;
-    background-color: transparent;
-    border: none;
-    outline: none;
-    width: 100%;
-    border-bottom: 1px solid silver;
-    cursor: pointer;
-    text-align: left;
-    font-size: 1rem;
-    background-color: white;
-`
-
-const list = [
-    { id: 1, name: "tono", age: 31 },
-    { id: 2, name: "mung", age: 30 },
-    { id: 3, name: "kamn", age: 29 },
-    { id: 4, name: "tomato", age: 31 },
-    { id: 5, name: "tarlia", age: 31 },
-    { id: 6, name: "titan", age: 31 }
-];
-
-export default function Header() {
+export default function Header({ list }) {
+    console.log(list);
     const [userList, setUserList] = useState([]);
     const [inputText, setInputText] = useState("");
     const [isFocus, setIsFocus] = useState(false);
-    const [keyIndex, setKeyIndex] = useState(0);
+    const [keyIndex, setKeyIndex] = useState(-1);
     const [sample, setSample] = useState("");
 
     const onSubmitHandle = (e, name) => {
@@ -80,64 +48,64 @@ export default function Header() {
         } else {
             setSample(e.target.dataset.name);
         }
+        setIsFocus(!isFocus);
+        setKeyIndex(-1);
+        setInputText("");
     };
 
     // input tag function
     const onChangeInput = (e) => {
         setInputText(e.target.value);
+        setKeyIndex(0);
     };
     const onClickInput = () => {
-        setIsFocus(!isFocus);
-        setKeyIndex(0);
-    }
-    const onKeyDownInput = (e) => {
-        const copy = list.filter((value) => value.name.includes(e.target.value));
-        const indexLen = list.filter((value) => value.name.includes(e.target.value)).length;
-
-        if (e.keyCode === 40) {
-            if (indexLen !== keyIndex) {
-                setKeyIndex(keyIndex + 1);
-                const selectedName = copy?.filter(
-                    (value) => value.id === keyIndex + 1
-                )[0].name;
-                if (e.keyCode === 13) {
-                    onSubmitHandle(e, selectedName);
-                }
-            }
-        } else if (e.keyCode === 40 && keyIndex === 0) {
-            //down
-            console.log("down");
+        if (!inputText && isFocus) {
+            setIsFocus(false);
+            setKeyIndex(-1);
+        } else {
             setIsFocus(true);
-        } else if (e.keyCode === 38) {
-            if (keyIndex !== 0) {
-                setKeyIndex(keyIndex - 1);
-            } else {
-                setIsFocus(false);
-            }
+            setKeyIndex(0);
         }
     }
+    const onKeyDownInput = (e) => {
+        // down key
+        if (e.keyCode === 40) {
+            setIsFocus(true);
+            setKeyIndex(keyIndex + 1);
+        } else if (e.keyCode === 40 && keyIndex === userList.length - 1) {
+            setKeyIndex(0)
+        }
 
-    const onClickSubmitListItems = (e, onSubmitHandle) => {
-        setInputText(e.target.dataset.name);
-        onSubmitHandle(e);
-    };
-    const onMouseOverListItems = (id) => {
-        setKeyIndex(id);
-    };
-    const getUserList = ()=>{
-        axios.get('/api/user-list')
-        .then(res => {
-            setUserList(res.data.map(user=>({
-                code : user.ep,
-                name : user.name
-            }))) 
-        })
+        // up key
+        if (e.keyCode === 38) {
+            setKeyIndex(keyIndex - 1);
+            setIsFocus(false)
+        } else if (e.keyCode === 38 && keyIndex > -1) {
+            setKeyIndex(keyIndex - 1);
+        }
+
+        // enter key
+        if (e.keyCode === 13) {
+            onSubmitHandle(
+                e,
+                userList.find(
+                    (value, index) =>
+                        index === keyIndex || value.name.includes(e.target.value))
+                        .name
+            );
+        } else if (e.keyCode === 13 && keyIndex === -1) {
+            onSubmitHandle(e, e.target.value);
+        }
+
     }
-    console.log(userList);
-    useEffect(()=>{
-        getUserList()
-    },[])
-    // TODO : list보여주븐 부분 다른 컴포넌트 useEffect 사용할 것
+
+    useEffect(() => {
+        if (inputText === "") {
+            setUserList(list);
+        } else {
+            setUserList(list.filter(value => value.name.includes(inputText)))
+        }
+    }, [inputText]);
     return (
         <HeaderBlock>
             <form onSubmit={onSubmitHandle}>
@@ -157,29 +125,29 @@ export default function Header() {
                     )}
                 </InputBox>
                 {/* list */}
-                {isFocus || keyIndex !== 0 ? (
-                    <ListBox>
-                        {list
-                            .filter((value) => value.name.includes(inputText))
-                            .map((user) => (
-                                // background-color: antiquewhite;
-                                <ListItem
-                                    key={user.id}
-                                    data-name={user.name}
-                                    style={{
-                                        backgroundColor:
-                                            user.id === keyIndex ? "antiquewhite" : "transparent"
-                                    }}
-                                    onClick={(e) => onClickSubmitListItems(e, onSubmitHandle)}
-                                    onMouseOver={() => onMouseOverListItems(user.id)}
-                                >
-                                    {user.name}
-                                </ListItem>
-                            ))}
-                    </ListBox>
-                ) : null}
+                {!isFocus || keyIndex === -1 ? null : (
+                    <SearchListBox
+                        list={userList}
+                        keyIndex={keyIndex}
+                        setInputText={setInputText}
+                        setKeyIndex={setKeyIndex}
+                        setIsFocus={setIsFocus}
+                        onSubmitHandle={onSubmitHandle}
+                    />
+                )}
             </form>
             <h3>show sample : {sample} / index: {keyIndex}</h3>
         </HeaderBlock>
     )
+}
+
+export async function getServerSideProps() {
+    console.log("header log");
+    console.log("env",process.env.API_BASE_URL);
+    const apiUrl = process.env.API_BASE_URL;
+    const res = await axios.get(`${apiUrl}/user-list`);
+    console.log(res);
+    const data = res.data;
+
+    return { props: { list: data } }
 }

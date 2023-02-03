@@ -3,7 +3,7 @@ import axios from "axios"
 import SearchBar from '../componets/pokemon/SearchBar';
 import PokemonList from '../componets/pokemon/PokemonList';
 
-const pokemon = ({ pokemons, types }) => {
+const pokemon = ({ pokemons }) => {
   const [filterPokemon, setFilterPokemon] = useState([]);
   return (
     <div>
@@ -23,7 +23,6 @@ export async function getStaticProps() {
   return {
     props: {
       pokemons: data,
-      types: data.map(value => value.type.split(","))
     }
   }
 }
